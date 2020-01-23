@@ -1,0 +1,21 @@
+4.c.i. The number of unique values for the column "event" (as shown in the facet box under the title) = 1639
+The number of unique values for the column "venue" (as shown in the facet box under the title) = 142
+
+ii. step: date (edit cells) -> common transforms -> To date
+GREL code: value.toDate('MM/yy','MMM-yy').toString('EEEEEEEEE, MMMMMMMMM d, yyyy')
+
+iii. Nominal: venue
+Ordinal: status
+
+iv. or(contains(value,'ENGLISH AND GERMAN'),contains(value,'GERMAN AND ENGLISH'))
+
+v. chomp(value,'_wotm')
+
+vi. As there were too many options, it was difficult to cluster. So I did some edits like
+Edit "Canada Pacific Railway" to "Canada PAcific Railway Company"
+Edit "Occidental & Oriental" and "Occidental & Oriental Co." to "Occidental & Oriental Steamship Company"
+Location type (Edit cells) -> Transform
+GREL Code: if(or(or(contains(cells["location"].value,'Hotel'),contains(cells["location"].value,'Cafe')),contains(cells["location"].value,'Norddeutscher Lloyd Bremen')),'Hotel/ Cafe',if(or(contains(cells["location"].value,'Company'),contains(cells["location"].value,'Co.')),'Company',if(or(contains(cells["location"].value,'Club'),contains(cells["location"].value,'Association')),'Club/ Association',if(contains(cells["location"].value,'House'),'Government Building','Others')))))
+
+
+This fills the location_type based on texts like "Hotel", "Cafe", "Club/ Association", "House"(assumed to be Government Building), "Company" and "Others".

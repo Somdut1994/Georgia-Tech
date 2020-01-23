@@ -1,0 +1,10 @@
+DLB -	3285.09
+DLB -_.	3285.09
+DLB_ADJ -	3278.13
+DLB_ADJ -_.	3278.13
+DLB_ADJ _._	3278.13
+Degree_ADJ requirements	872.3
+Degree_ADJ requirements_NOUN	872.3
+a_DET _NOUN_	813.69
+award applicants	747.27
+award applicants_NOUN	747.27

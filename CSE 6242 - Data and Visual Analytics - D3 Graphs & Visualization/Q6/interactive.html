@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Interactive Chart: FooBar 2015</title>
+
+<style>
+
+.chart rect {
+  fill: gray;
+}
+
+.chart text {
+
+  font: 10px arial;
+  text-anchor: end;
+}
+
+
+
+</style>
+
+<style type="text/css">
+td
+{
+    padding:0 25px 0 25px;
+    text-align-last: right;
+}
+
+</style>
+
+
+<svg class="chart"></svg>
+<svg class="legend"></svg>
+
+
+<script src="../lib/d3.v3.min.js"></script>
+<script>
+
+//------Dataset----
+
+var data = [{product:'Product A',freq:{Q1:576, Q2:1176, Q3:1009, Q4:494}},
+{product:'Product B',freq:{Q1:959, Q2:1653, Q3:1999, Q4:697}},
+{product:'Product C',freq:{Q1:3210, Q2:4220, Q3:1648, Q4:919}},
+{product:'Product D',freq:{Q1:589, Q2:2043, Q3:1153, Q4:911}},
+{product:'Product E',freq:{Q1:2599, Q2:1333, Q3:818, Q4:1713}},
+{product:'Product F',freq:{Q1:431, Q2:324, Q3:715, Q4:421}},
+{product:'Product G',freq:{Q1:1457, Q2:2557, Q3:2245, Q4:762}},
+{product:'Product H',freq:{Q1:2573, Q2:3357, Q3:1598, Q4:1287}}
+        ];
+
+// Product Array 
+
+var productArray = [];
+
+for(var i =0; i<8; i++){
+ var a = data[i].freq;
+ var sum = a.Q1+a.Q2+a.Q3+a.Q4;
+ productArray.push(sum);
+ };
+console.log(productArray);
+
+//Legend Array
+
+var legarr = [];
+
+for(var i =0; i<8; i++){
+	var a = data[i].freq;
+	var quarterArray=[a.Q1, a.Q2, a.Q3, a.Q4]
+	legarr.push(quarterArray);
+ };
+
+var products = ['Product A', 'Product B','Product C','Product D','Product E','Product F', 'Product G', 'Product H'],
+	legends = ['Q4', 'Q3', 'Q2', 'Q1'];
+
+// Bar creating function
+		
+function createBar(arr){
+var svg1 = d3.select("body").append("svg")
+        .attr("width", 600)
+		.attr("id","svgTag")
+        .attr("height", 300)
+      .append("g")
+		.attr("transform", "translate(" + 40 + "," + 50 + ")");
+var x = d3.scale.linear().range([0, width*2.15]).domain([0,(d3.max(productArray))]);
+var y = d3.scale.linear().range([220, 0]).domain([0,8]);
+   		
+var yAxis = d3.svg.axis()
+	.orient("left")
+	.scale(y)
+	.tickSize(5)
+	.tickFormat(function(d,i){ return legends[i]; })
+	.tickValues(d3.range(4));
+					
+var bar = svg1.selectAll("g")
+    .data(arr)
+    .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(50," + (i) * barHeight + ")"; });
+
+	bar.append("rect")
+    .attr("width", x)
+    .attr("height", barHeight-5 )
+	.style('fill', 'steelblue');
+
+	bar.append("text")
+    .attr("x", 5)
+    .attr("y", barHeight/2)
+    .attr("dy", ".35em")
+    .text(function(d) { return "$"+d3.format(',')(d); })
+    .attr("fill", "white")
+	.style("font-weight", "bold")
+	.style("font-size", "12px");
+	
+	svg1.append("g")
+    .attr("transform", "translate(50,-128)")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "arial")
+    .attr("font-size", "13px")
+    .style("stroke", "none")
+    .style("fill", "none")
+    .style("stroke-width", 1)
+    .call(yAxis)
+    .selectAll("text")
+    .attr("stroke", "gray")
+    .attr("fill", "gray");	
+};	
+	
+// Setting up main bar graph
+var width = 440,
+    barHeight = 25;
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(productArray)+1])
+    .range([0, 400]);
+
+var y = d3.scale.linear()
+    .domain([0,8.5])
+    .range([0,barHeight*8.5]);
+
+var yAxis = d3.svg.axis();
+    yAxis
+    .orient('left')
+    .scale(y)
+    .tickSize(0)
+    .tickFormat(function(d,i){ return products[i]; })
+    .tickValues(d3.range(8));
+
+var chart = d3.select(".chart")
+    .attr("width", width)
+    .attr("height", 300);
+
+var bar = chart.selectAll("g")
+    .data(productArray)
+    .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(60," + (i+2) * barHeight + ")"; });
+
+bar.append("rect")
+    .attr("width", x)
+    .attr("height", barHeight-1 )
+    .on('mouseover', function(d, i) {
+                d3.select(this).style('fill', 'steelblue');
+				createBar(legarr[i]);
+            })
+            .on('mouseout', function(d) {
+                 d3.select(this).style('fill', 'gray');
+                 d3.select("#svgTag").remove();
+            });
+
+bar.append("text")
+    .attr("x", 40)
+    .attr("y", barHeight/2)
+    .attr("dy", ".35em")
+	.style("font-size", "12px")
+	.style("font-weight","bold")
+    .text(function(d) { return "$"+d3.format(',')(d); })
+    .attr("fill", "white");
+
+chart.append("g")
+    .attr("transform", "translate(58,62)")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "arial")
+    .attr("font-size", "13px")
+    .style("stroke", "none")
+    .style("fill", "none")
+    .style("stroke-width", 1)
+    .call(yAxis)
+    .selectAll("text")
+    .attr("stroke", "gray")
+    .attr("fill", "gray")	
+</script>
+</body>
+

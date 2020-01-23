@@ -1,0 +1,2 @@
+In cases of high variability of values within a wide range in an axis, the logarithmic scale is preferred.
+Also this relationship (as I worked out) showed that Distribution had a linear relation with log(Bod Mass). Such relations can be empirically found if log scaling is used.

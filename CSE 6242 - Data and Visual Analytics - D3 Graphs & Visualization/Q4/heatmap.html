@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.tile {
+  shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style>
+<title>Q4: HeatMap with Zipcode</title>
+<body>
+<script type="text/javascript" src="../lib/d3.v3.min.js"></script>
+<script>
+
+function monthName(d){
+	var dummyDate = "2010-"+d+"-20"; //creating a dummy date
+	var dateconvert=new Date(dummyDate).toLocaleDateString('en-US', { month : 'short'});
+	return dateconvert;}
+
+d3.csv("heatmap.csv", function(error, dummy) {
+ var zipValues=[];
+  if (error) throw error;
+  dummy.forEach(function(d) {
+    if(zipValues.indexOf(d["Zip Code"]) === -1){
+		zipValues.push(d["Zip Code"]);}
+  });
+
+var select = d3.select('body')
+  .append('select')
+  	.attr('class','select')
+    .on('change',onchange)
+
+var options = select
+  .selectAll('option')
+	.data(zipValues).enter()
+	.append('option')
+		.text(function (d) { return d; });
+
+	selectValue = d3.select('select').property("value")
+	d3.select('body')
+		.append('p')
+d3.select("svg").remove();
+d3.csv('heatmap.csv', function(error, powerData1) {
+	if (error) throw error;
+	var margin = {top: 20, right: 90, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+
+var powerData=[];
+var x = d3.scale.linear().range([0, width]),
+    y = d3.scale.linear().range([height, 0]),
+    z = d3.scale.linear().range(["white", "red"]);
+
+// The size of the powerData in the CSV data file.
+// This could be inferred from the data if it weren't sparse.
+var xStep = 0.95,
+    yStep = 0.95;
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    powerData1.forEach(function(d) {
+    if (d["Zip Code"]===zipValues[0]){
+	powerData.push({Month: +d.Month-xStep/2, Year: +d.Year-yStep/2, Power: +d.Power});}
+    });
+
+	svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "14px") 
+        .style("font-weight", "Bold")  
+        .text("Water Usage Heatmap");
+		
+  // Compute the scale domains.
+  x.domain(d3.extent(powerData, function(d) { return d.Month; }));
+  y.domain(d3.extent(powerData, function(d) { return d.Year; }));
+  z.domain(d3.extent(powerData, function(d) { return d.Power; }));
+  
+  // Extend the x- and y-domain to fit the last bucket.
+  // For example, the y-bucket 3200 corresponds to values [3200, 3300].
+  x.domain([x.domain()[0] , +x.domain()[1] + xStep]);
+  y.domain([y.domain()[0], y.domain()[1] + yStep]);
+
+  // Display the tiles for each non-zero bucket.
+  // See http://bl.ocks.org/3074470 for an alternative implementation.
+  svg.selectAll(".tile")
+      .data(powerData)
+    .enter().append("rect")
+      .attr("class", "tile")
+      .attr("x", function(d) { return x(d.Month); })
+      .attr("y", function(d) { return y(d.Year + yStep); })
+      .attr("width", x(xStep) - x(0))
+      .attr("height",  y(0) - y(yStep))
+      .style("fill", function(d) { return z(d.Power); });
+  // Add a legend for the color values.
+  var legend = svg.selectAll(".legend")
+      .data(z.ticks(6).slice(1).reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(" + (width + 20) + "," + (20 + i * 20) + ")"; });
+
+  legend.append("rect")
+      .attr("width", 20)
+      .attr("height", 20)
+      .style("fill", z);
+
+  legend.append("text")
+      .attr("x", 26)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+      .text(String);
+
+  svg.append("text")
+      .attr("class", "label")
+      .attr("x", width + 20)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+      .text("kWh");
+
+  // Add an x-axis with label.
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.svg.axis().scale(x).tickFormat(function (d){ return monthName(d)}).orient("bottom"))
+	  //.call(d3.svg.axis().scale(x).ticks(d3.time.days).tickFormat(formatDate).orient("bottom"))
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width+35)
+      .attr("y", -6)
+      .attr("text-anchor", "end")
+      .text("Month");
+
+  // Add a y-axis with label.
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.svg.axis().scale(y).tickFormat(d3.format("d")).orient("left"))
+    .append("text")
+      .attr("class", "label")
+      .attr("y",-15)
+      .attr("dy", ".71em")
+      .attr("text-anchor", "end")
+      //.attr("transform", "rotate(-90)")
+      .text("Year");
+  });
+		
+function onchange() {
+	selectValue = d3.select('select').property("value")
+	d3.select('body')
+		.append('p')
+d3.select("svg").remove();
+d3.csv('heatmap.csv', function(error, powerData1) {
+	if (error) throw error;
+	var margin = {top: 20, right: 90, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+
+var powerData=[];
+var x = d3.scale.linear().range([0, width]),
+    y = d3.scale.linear().range([height, 0]),
+    z = d3.scale.linear().range(["white", "red"]);
+
+// The size of the powerData in the CSV data file.
+// This could be inferred from the data if it weren't sparse.
+var xStep = 0.95,
+    yStep = 0.95;
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    powerData1.forEach(function(d) {
+    if (d["Zip Code"]===selectValue){
+	powerData.push({Month: +d.Month-xStep/2, Year: +d.Year-yStep/2, Power: +d.Power});}
+    });
+	
+	svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "14px") 
+        .style("font-weight", "Bold")  
+        .text("Water Usage Heatmap");
+  
+  // Compute the scale domains.
+  x.domain(d3.extent(powerData, function(d) { return d.Month; }));
+  y.domain(d3.extent(powerData, function(d) { return d.Year; }));
+  z.domain(d3.extent(powerData, function(d) { return d.Power; }));
+  
+  // Extend the x- and y-domain to fit the last bucket.
+  // For example, the y-bucket 3200 corresponds to values [3200, 3300].
+  x.domain([x.domain()[0] , +x.domain()[1] + xStep]);
+  y.domain([y.domain()[0], y.domain()[1] + yStep]);
+
+  // Display the tiles for each non-zero bucket.
+  // See http://bl.ocks.org/3074470 for an alternative implementation.
+  svg.selectAll(".tile")
+      .data(powerData)
+    .enter().append("rect")
+      .attr("class", "tile")
+      .attr("x", function(d) { return x(d.Month); })
+      .attr("y", function(d) { return y(d.Year + yStep); })
+      .attr("width", x(xStep) - x(0))
+      .attr("height",  y(0) - y(yStep))
+      .style("fill", function(d) { return z(d.Power); });
+  // Add a legend for the color values.
+  var legend = svg.selectAll(".legend")
+      .data(z.ticks(6).slice(1).reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(" + (width + 20) + "," + (20 + i * 20) + ")"; });
+
+  legend.append("rect")
+      .attr("width", 20)
+      .attr("height", 20)
+      .style("fill", z);
+
+  legend.append("text")
+      .attr("x", 26)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+      .text(String);
+
+  svg.append("text")
+      .attr("class", "label")
+      .attr("x", width + 20)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+      .text("kWh");
+
+  // Add an x-axis with label.
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.svg.axis().scale(x).tickFormat(function (d){ return monthName(d)}).orient("bottom"))
+	  //.call(d3.svg.axis().scale(x).ticks(d3.time.days).tickFormat(formatDate).orient("bottom"))
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width+35)
+      .attr("y", -6)
+      .attr("text-anchor", "end")
+      .text("Month");
+
+  // Add a y-axis with label.
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.svg.axis().scale(y).tickFormat(d3.format("d")).orient("left"))
+    .append("text")
+      .attr("class", "label")
+      .attr("y",-15)
+      .attr("dy", ".71em")
+      .attr("text-anchor", "end")
+      //.attr("transform", "rotate(-90)")
+      .text("Year");
+  });
+  };
+  });
+</script>

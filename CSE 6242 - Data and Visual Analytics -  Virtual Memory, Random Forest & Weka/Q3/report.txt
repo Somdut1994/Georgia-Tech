@@ -1,0 +1,24 @@
+Section A
+1. Random Forest
+RandomTree -K 0 -M 1.0 -V 0.001 -S 1
+Time taken to build model: 0.14 seconds
+Overall accuracy: 96.9253 %
+Confusion Matrix:
+   a   b   <-- classified as
+ 433  11 |   a = 0
+  10 229 |   b = 1
+
+2. LMT -I -1 -M 15 -W 0.0
+Time taken to build model: 0.55 seconds
+Overall accuracy: 95.754  %
+Confusion Matrix:
+   a   b   <-- classified as
+ 430  14 |   a = 0
+  15 224 |   b = 1
+
+Section B
+1. The result of Weka is 96.9253 % compared to my result 96.49 %. The results are similar and are expected to vary with different runs in the same range.
+2. I choose decision tree which is Logistic Model Tree (LMT) algorithm. Compared to random forest:
+Accuracy: Slightly less
+Run time: Slower
+Confusion matrix: predicted less 1's and 0's correctly  (430, 224) as compared to random forest (433, 229).

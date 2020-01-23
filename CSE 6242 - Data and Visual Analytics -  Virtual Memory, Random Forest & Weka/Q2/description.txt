@@ -1,0 +1,7 @@
+Steps:
+1) Bootstrapping
+2) 10 trees in random forests
+3) splitting is done around mean value since that seemed to give a resonably good accuracy. 
+
+Accuracy = 0.9649 
+OOB estimate = 1 - Accuracy = 0.0351

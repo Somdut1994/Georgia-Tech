@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Q5: Sankey Chart</title>
+
+<style>
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+
+/* Styling the tooltip */
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+</style>
+
+
+<body>
+<p id="chart">
+<script src="../lib/d3.v3.min.js"></script>
+<script src="../lib/d3.tip.v0.6.3.js"></script>
+<script src="../lib/sankey.js"></script>
+<script>
+	
+
+//-----References Used for Sankey: http://learnjsdata.com/group_data.html; http://bl.ocks.org/d3noob/c9b90689c1438f57d649; http://www.d3noob.org/2013/02/sankey-diagrams-description-of-d3js-code.html; http://www.d3noob.org/2013/02/formatting-data-for-sankey-diagrams-in.html; https://bost.ocks.org/mike/selection/; https://bl.ocks.org/d3noob/5028304; http://stackoverflow.com/questions/31976861/d3-js-sankey-diagram-where-does-dy-and-dx-get-set; https://www.crowdanalytix.com/communityBlog/who-said-what---d3-sankey-chart-tutorial-using-twitter-data
+
+
+//------References used for Tooltip additon on Sankey: http://bl.ocks.org/Caged/6476579; http://jsfiddle.net/1qsL632n/; https://gist.github.com/d3noob/c9b90689c1438f57d649; https://groups.google.com/forum/#!topic/d3-js/mz_qSXpj9Bc;
+
+var units = "Widgets";
+
+//---------------------Setting up the canvas --------------------------------------------------
+var margin = {top: 10, right: 10, bottom: 20, left: 10},
+    width = 1300 - margin.left - margin.right,
+   height = 1100 - margin.top - margin.bottom;
+
+var formatNumber = d3.format(",.0f"),    // zero decimal places
+   format = function(d) { return formatNumber(d) + " " + units; },
+    color = d3.scale.category20();
+
+//-------------------tip---------------------------------------
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return d.source.name + " - " + 
+                d.target.name + " - " +d.value+" points";
+  })
+
+//---------------------Appending the svg canvas to the page----------------------------------
+var svg = d3.select("#chart").append("svg")
+     .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+//--------------------------Setting up the properties of the sankey diagram---------------------
+ svg.call(tip);
+var sankey = d3.sankey()
+    .nodeWidth(40)
+    .nodePadding(10)
+    .size([width, height]);
+
+var path = sankey.link();
+
+//---------------------------Loading in the raw csv data-----------------------------------------
+d3.csv("races.csv",function (data){
+
+//----Initializing an object graph formatted to pass to the Sankey library
+ graph = {"nodes" : [], "links" : []};
+ 
+ data.forEach(function(d) {
+  
+  graph.nodes.push({"name":d.race});
+  graph.nodes.push({"name":d.driver});
+  graph.links.push({"source":d.race,"target":d.driver,"value":+d.points})
+  });
+
+  console.log(graph);
+
+  d3.csv("teams.csv",function (data){
+
+  data.forEach(function(d) {
+  graph.nodes.push({"name":d.driver});
+  graph.nodes.push({"name":d.team});
+  graph.links.push({"source":d.driver,"target":d.team,"value":+d.points}) 
+  });
+
+//------------Removing the repeated nodes-----------------------------------------------------------
+  graph.nodes=d3.keys(d3.nest()
+         .key(function (d) { return d.name; })
+          .map(graph.nodes));
+
+//------------Changing the link source and target from name to corresponding node label--------------- 
+  graph.links.forEach(function (d, i) {
+  graph.links[i].source = graph.nodes.indexOf(graph.links[i].source);
+  graph.links[i].target = graph.nodes.indexOf(graph.links[i].target);
+  });
+
+//-------Changing the values in node from data to object to pass to -----------------------------
+  graph.nodes.forEach(function (d, i) {
+  graph.nodes[i] = { "name": d };
+  });
+
+//-------------------Adding Sankey Chat ---------------------------------------------------------
+  sankey
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .layout(32);
+
+//-----------------Adding Links to the Chart------------------------------------------------------
+  var link = svg.append("g").selectAll(".link")
+      .data(graph.links)
+      .enter().append("path")
+      .attr("class", "link")
+      .attr("d", path)
+      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+      .on('mouseover', tip.show)
+      .on('mouseout',tip.hide)
+      .sort(function(a, b) { return b.dy - a.dy; });
+
+//----------------------Adding Nodes to the Chart-------------------------------------------------
+  var node = svg.append("g").selectAll(".node")
+      .data(graph.nodes)
+      .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { 
+      return "translate(" + d.x + "," + d.y + ")"; })
+      .call(d3.behavior.drag()
+      .origin(function(d) { return d; })
+      .on("dragstart", function() { 
+      this.parentNode.appendChild(this); })
+      .on("drag", dragmove));
+
+//----------Setting node appearance properties--------------------------------------------
+
+	node.append("rect")
+      .attr("height", function(d) { return d.dy; })
+      .attr("width", sankey.nodeWidth())
+      .style("fill", function(d) { 
+      return d.color = color(d.name.replace(/ .*/, "")); })
+      .style("stroke", function(d) { 
+      return d3.rgb(d.color).darker(2); })
+      .append("title")
+      .text(function(d) { 
+      return d.name + "\n" + format(d.value); });
+
+//---------------Adding titles to the nodes---------------------------------------------------
+  node.append("text")
+      .attr("x", -6)
+      .attr("y", function(d) { return d.dy / 2; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "end")
+      .attr("transform", null)
+      .text(function(d) { return d.name; })
+      .filter(function(d) { return d.x < width / 2; })
+      .attr("x", 6 + sankey.nodeWidth())
+      .attr("text-anchor", "start");
+
+// ----------------Moving nodes function------------------------------------------------------
+  function dragmove(d) {
+   d3.select(this).attr("transform", "translate(" + d.x + "," + (d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))) + ")");
+    sankey.relayout();
+    link.attr("d", path);
+  }
+  });
+ //console.log(graph); //check
+});
+</script>

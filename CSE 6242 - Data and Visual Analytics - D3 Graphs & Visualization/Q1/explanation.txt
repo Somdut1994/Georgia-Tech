@@ -1,0 +1,18 @@
+1.a
+Steps:
+1) The columns (a) Internally displaced person (IDPs), (b) Returned IDPs, (c) Stateless Persons were removed as they had no entries in them anywhere in the data.
+2) The "*"s were replaced with blanks.
+3) The "Origin" data against each country were sorted A-Z.
+4) The "Country / territory of asylum/residence" were sorted A-Z.
+5) Repetitions of same years were merged.
+6) Repetitions of same "Country / territory of asylum/residence" data within a year were merged.
+7) The font was changed to a preferred font, Garamond in this case.
+
+1.b
+Steps:
+1) The columns "Female 5-17" and "Male 5-17" were removed before importing to tableau.
+2) After importing, the datatypes of "F 60+" and "M 60+" are changed to number (whole)
+3) The year are grouped by the numbers
+4) Only 2014 ws used for filter
+5) Group bars were created on each age group of each sex from each asylum seeking nation.
+ 

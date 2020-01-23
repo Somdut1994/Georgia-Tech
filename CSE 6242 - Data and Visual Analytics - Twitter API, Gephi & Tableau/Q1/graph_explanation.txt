@@ -1,0 +1,3 @@
+Layout: Yihan Fu Proportional (with some editing to make it look proper)
+Label: Text fonts are in proportion with the degree of the corresponding node.
+Color of node: Based of degree of node

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../lib/d3.v3.min.js"></script>
+<script src="../lib/topojson.v1.min.js"></script>
+<script src="../lib/d3.tip.v0.6.3.js"></script>
+
+<style>
+
+/* Styling the tooltip */
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+<script type="text/JavaScript">
+
+/* D3 code here */
+
+/*var w = 1000;
+var h = 500;
+var svg = d3.select("body").append("svg")
+.attr("width", w)
+.attr("height", h); */ 
+
+
+var margin = {top: 0, right: 110, bottom: 0, left: -15},
+    w = 960 - margin.left - margin.right,
+    h = 500 - margin.top - margin.bottom;
+
+var svg = d3.select("body").append("svg")
+    .attr("width", w + margin.left + margin.right)
+    .attr("height", h + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var projection = d3.geo.albersUsa()
+var path = d3.geo.path()
+.projection(projection);
+
+d3.json("us.json", function(us) {
+	d3.json("median_earnings.json", function(error, ME) {
+		if (error) throw error;
+	d3.csv("sat_scores.csv", function(error, data) {
+		if (error) throw error;
+		ME.forEach(function(d) {
+			d.median_earnings=+d.median_earnings;});
+		var colour = d3.scale.linear()
+		.domain([12000,34000])
+		.range(["lightgreen", "darkgreen"]);
+		
+		var tip = d3.tip()
+			.attr('class', 'd3-tip')
+			.offset([75, 15])
+			.html(function(d) { 
+			var chars="";
+			for (i=0; i<data.length;i++) { if (+data[i].id===d.id) { 
+			 chars=chars+data[i].name + " (SAT: " + data[i].sat_avg + ") </br>";}}
+				return chars;
+			});
+		
+		svg.call(tip);
+		svg.selectAll("append")
+		.data(topojson.feature(us, us.objects.states).features)
+		.enter()
+		.append("path")
+		.attr("d", path)
+		.attr("fill", function(d) { for (i=0; i<ME.length;i++){ if(ME[i].id===d.id){return colour(ME[i].median_earnings); }}})
+		.attr("stroke","black")
+		.attr("stroke-width", .5)      
+		.on('mouseover', tip.show)
+		.on('mouseout', tip.hide);
+		//.attr("d", function(d) { return data(d.values); });;	
+		
+	var legend = svg.selectAll(".legend")
+      .data([15000, 18000, 21000, 24000, 27000, 30000, 33000])
+	  .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(" + w + "," + (300 + i * 20) + ")"; });  
+	legend.append("rect")
+      .attr("width", 20)
+      .attr("height", 20)
+      .style("fill", colour);
+	
+	legend.append("text")
+      .attr("x", 26)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+      .text(function(String){return "$"+String;})
+	  .style("font-weight","bold");
+
+	svg.append("text")
+      .attr("class", "label")
+      .attr("x", w-400)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+	  .style("font-weight","bold")
+	  .style("font-size","20px")
+      .text("Median Earnings by State");  
+});	
+});
+});
+</script>
+</body>
+</html>

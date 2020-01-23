@@ -1,0 +1,5 @@
+Average Node Degree: It is the average of degree of each node where degree of each node is denoted by the number of edges incident on (i.e. going in or going from)  the node. 1.03 is the average degree for the given graph.
+
+Diameter of the graph: It is the longest distance between any two nodes in a network. The diameter of this graph is 4.
+
+Average Path Length: It is the average graph distance between all pairs of nodes. The average path length is 3.698 for the current graph.

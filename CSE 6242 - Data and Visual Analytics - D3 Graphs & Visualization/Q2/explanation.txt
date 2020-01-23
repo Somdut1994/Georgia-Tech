@@ -1,0 +1,2 @@
+The scaling of radius is done based on the square root of d.weight. This makes the graph easily understandable and the point clearly visible.
+ 

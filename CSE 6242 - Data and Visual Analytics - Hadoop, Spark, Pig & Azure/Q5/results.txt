@@ -1,0 +1,18 @@
+Part 1:
+SVM	weighted	0.704545
+SVM	unweighted	0.56
+Boosted Decision Tree	weighted	0.659091	
+Boosted Decision Tree	unweighted	0.582727
+
+Part 2:
+SVM	weighted	0.328704
+SVM	unweighted	0.544753
+Boosted Decision Tree	weighted	0.714506
+Boosted Decision Tree	unweighted	0.662037
+
+Part 3:
+Changed "Maximum number of leaves per tree" from 20 to 10
+SVM	weighted	0.704545
+SVM	unweighted	0.56
+Boosted Decision Tree	weighted	0.602727
+Boosted Decision Tree	unweighted	0.613636

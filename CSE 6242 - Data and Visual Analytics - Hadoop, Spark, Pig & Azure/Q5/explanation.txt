@@ -1,0 +1,2 @@
+Increasing "Maximum number of leaves per tree" is supposed to increase accuracy at the expense of over-fitting and train time.
+I played with the value (10, 15, 30, 40) around the default 20 and concluded that 20 is the optimum value to get the best result.
