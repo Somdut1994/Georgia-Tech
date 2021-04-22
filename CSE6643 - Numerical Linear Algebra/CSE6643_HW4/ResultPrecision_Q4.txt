@@ -1,0 +1,24 @@
+Jacobian Iteration does not give accurate result for m = 100 and mu = -5
+Gauss Seidel Iteration does not give accurate result for m = 100 and mu = -5
+SOR Iteration gives accurate result for m = 100 and mu = -5
+Jacobian Iteration does not give accurate result for m = 200 and mu = -5
+Gauss Seidel Iteration does not give accurate result for m = 200 and mu = -5
+SOR Iteration gives accurate result for m = 200 and mu = -5
+Jacobian Iteration does not give accurate result for m = 400 and mu = -5
+Gauss Seidel Iteration does not give accurate result for m = 400 and mu = -5
+SOR Iteration gives accurate result for m = 400 and mu = -5
+Jacobian Iteration does not give accurate result for m = 800 and mu = -5
+Gauss Seidel Iteration does not give accurate result for m = 800 and mu = -5
+SOR Iteration gives accurate result for m = 800 and mu = -5
+Jacobian Iteration gives accurate result for m = 100 and mu = 5
+Gauss Seidel Iteration gives accurate result for m = 100 and mu = 5
+SOR Iteration gives accurate result for m = 100 and mu = 5
+Jacobian Iteration gives accurate result for m = 200 and mu = 5
+Gauss Seidel Iteration gives accurate result for m = 200 and mu = 5
+SOR Iteration gives accurate result for m = 200 and mu = 5
+Jacobian Iteration gives accurate result for m = 400 and mu = 5
+Gauss Seidel Iteration gives accurate result for m = 400 and mu = 5
+SOR Iteration gives accurate result for m = 400 and mu = 5
+Jacobian Iteration gives accurate result for m = 800 and mu = 5
+Gauss Seidel Iteration gives accurate result for m = 800 and mu = 5
+SOR Iteration gives accurate result for m = 800 and mu = 5
