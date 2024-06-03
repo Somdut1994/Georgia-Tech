@@ -1,0 +1,885 @@
+%%
+%% This is file `sample-sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[sigconf,authordraft]{acmart}
+%%%% As of March 2017, [siggraph] is no longer used. Please use sigconf (above) for SIGGRAPH conferences.
+
+%%%% Proceedings format for SIGPLAN conferences 
+% \documentclass[sigplan, anonymous, review]{acmart}
+
+%%%% Proceedings format for SIGCHI conferences
+% \documentclass[sigchi, review]{acmart}
+
+%%%% To use the SIGCHI extended abstract template, please visit
+% https://www.overleaf.com/read/zzzfqvkmrfzn
+
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+
+
+%% do we even need this footnote ?
+\usepackage{enumitem}
+\usepackage{float}
+\setcopyright{acmcopyright}
+\copyrightyear{2018}
+\acmYear{2018}
+\acmDOI{10.1145/1122445.1122456}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% %% These commands are for a PROCEEDINGS abstract or paper.
+% \acmConference[Woodstock '18]{Woodstock '18: ACM Symposium on Neural
+%   Gaze Detection}{June 03--05, 2018}{Woodstock, NY}
+% \acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%   June 03--05, 2018, Woodstock, NY}
+% \acmPrice{15.00}
+% \acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+\sloppy
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{User-Customized Restaurant Recommendation using Natural Language Processing on Yelp Data}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+%%\author{Ben Trovato}
+%%\authornote{Both authors contributed equally to this research.}
+%%\email{trovato@corporation.com}
+%%\orcid{1234-5678-9012}
+
+\author{Somdut Roy}
+\authornotemark[1]
+
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \streetaddress{North Ave NW}
+  \city{Atlanta}
+  \state{Georgia}
+  \postcode{30313}
+  \country{USA}}
+\email{somdut.roy@gatech.edu}
+%}
+
+\author{Devanshee Shah}
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \streetaddress{North Ave NW}
+  \city{Atlanta}
+  \state{Georgia}
+  \postcode{30313}
+  \country{USA}}
+\email{dshah330@gatech.edu}
+
+
+
+\author{Vitaly V. Marin}
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \streetaddress{North Ave NW}
+  \city{Atlanta}
+  \state{Georgia}
+  \postcode{30313}
+  \country{USA}}
+\email{vmarin3@gatech.edu}
+
+
+% \author{Valerie B\'eranger}
+% \affiliation{%
+%   \institution{Inria Paris-Rocquencourt}
+%   \city{Rocquencourt}
+%   \country{France}
+
+ \begin{abstract}
+Using machine learning tools for natural language processing (NLP) has been prevalent in different avenues across the globe. With numerous sources of available data in textual format, it would be interesting to leverage such information to gain useful insights. Yelp data is one such readily available and insightful data avenue. This study uses a set of a reviews and the corresponding ratings for a restaurant for one city and creates a rating prediction tool using i) Linear SVM and ii) Logistic Regression. At the same time, the provided ratings are used to recommend relevant restaurants to a user mentioned his/her favourite restaurant. Considering Computation Time and Accuracy for both the models, logistic regression was chosen over SVM. Finally, rating prediction and Item based collaborative filtering were merged to devise a tool to recommend a said user, who has a favorite restaurant, with a list of restaurants. 
+%   A clear and well-documented \LaTeX\ document is presented as an
+%   article formatted for publication by ACM in a conference proceedings
+%   or journal publication. Based on the ``acmart'' document class, this
+%   article presents and explains many of the common variations, as well
+%   as many of the formatting elements an author may use in the
+%   preparation of the documentation of their work.
+ \end{abstract}
+
+
+% \keywords{NLP, recommender systems, Yelp, item-based collaborative filtering, rating, reviews}
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+%\renewcommand{\shortauthors}{Trovato and Tobin, et %al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+
+
+% A "teaser" image appears between the author and affiliation
+% information and the body of the document, and typically spans the
+% page.
+% \begin{teaserfigure}
+%   \includegraphics[width=\textwidth]{sampleteaser}
+%   \caption{Novel Travel Recommendation System.}
+%   \Description{Novel Travel Recommendation System.}
+%   \label{fig:teaser}
+% \end{teaserfigure}
+% \begin{teaserfigure}
+%     \centering
+%     \includegraphics[scale=.49]{front.jpg}
+%     \caption{"Often, users have to make multiple trip-related choices and combining them is tedious and time-intensive"}
+%     \label{fig:mesh1}
+% \end{teaserfigure}
+
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+
+% ACM's consolidated article template, introduced in 2017, provides a
+% consistent \LaTeX\ style for use across ACM publications, and
+% incorporates accessibility and metadata-extraction functionality
+% necessary for future Digital Library endeavors. Numerous ACM and
+% SIG-specific \LaTeX\ templates have been examined, and their unique
+% features incorporated into this single new template.
+
+% If you are new to publishing with ACM, this document is a valuable
+% guide to the process of preparing your work for publication. If you
+% have published with ACM before, this document provides insight and
+% instruction into more recent changes to the article template.
+
+% The ``\verb|acmart|'' document class can be used to prepare articles
+% for any ACM publication --- conference or journal, and for any stage
+% of publication, from review to final ``camera-ready'' copy, to the
+% author's own version, with {\itshape very} few changes to the source.
+
+% For a user starting a search for a trip with all three key aspects in mind, the overall experience can be taxing and time-intensive. And even such a tedious manual process can not ensure satisfactory result both in financial and mental aspect. In this project, we would like to leverage the knowledge from current studies made in the individual flight, hotel or food aspects to build a hybrid three-aspect user-customized search engine.
+
+\section{Data Discovery and Proposed Methodology}
+In this section, we discuss the rationale behind choosing a particular data-set, the process of gathering initial insights on the data and detailed description of the proposed methodology.
+\subsection{Rationale behind choosing particular dataset} 
+We found good amount of organized Yelp data in Kaggle in JSON format [2]. It had detailed Yelp reviews for businesses including but not limited to restaurants from all users from 2005 to 2018 in different cities across the country. Out of all businesses, restaurants had the biggest fraction of reviews. Therefore, from a JSON file of 6 gigabytes size, only businesses tagged as "restaurant" were extracted out. Our aim in this study was to possibly explore different avenues in NLP without excessive computation load. At the same time, having a really small data could make for a very limited and non-generalized study. So, we decided to choose a city with 10k-20k data-points. Avondale, AZ turned out to be one of them. The final extracted CSV file with the relevant information is 7 megabytes in size. 
+\subsection{Data Discovery} 
+In our finalised dataset, there are seven relevant attributes  : Review ID, User ID, Business ID, Restaurant Name, Stars, Text Reviews, Date. After filtering out data for restaurants in Avondale, AZ with reviews and ratings, as shown in the Table 1, there are 12662 reviews by 8031 unique users for 163 unique restaurants. Text Review is used for sentiment analysis; rating is the ground truth label for measuring the accuracy of the model as well as used to find the cosine similarities among restaurants; business id and user id served as the key for data wrangling.
+\begin{table}[H]
+\centering
+\caption{Information on Our Dataset- Restaurants' Reviews of Avondale, AZ}
+\begin{tabular}{p{1cm}|p{2.5cm}|p{1cm}|p{1cm}}
+    \hline
+     Number of Reviews  & Features Included & Number of Unique users & Number of Unique Restaurants \\
+    \hline
+    12662 & reviewID, userID, businessID, restaurant name, stars, Text Reviews, Date & 8031 & 163 \\
+
+\hline
+\end{tabular}
+\end{table}
+In this section, Some of the interesting features of our data-set are presented. Figure 1 shows distinct feature - 20 most reviewed restaurants and their counts. \textit{Flavors of Louisiana} is the most reviewed restaurant in Avondale with more than 700 reviews. In another feature, Figure 2(a) shows its ratings over the years.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{mostreviewed.png}
+    % \includegraphics[width=0.3\textwidth]{fol.png}
+    % \includegraphics[width=0.35\textwidth]{toprated.png}
+    \caption{Twenty Most Reviewed Restaurants in Avondale}
+    \label{fig:my_label1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\textwidth]{fol.png}
+    \includegraphics[width=0.35\textwidth]{toprated.png}
+    \caption{(a) Ratings of "Flavors of Louisiana" over the years (top), (b)  Twenty Top Rated Restaurants in Avondale (bottom)}
+    \label{fig:my_label2}
+\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.35\textwidth]{toprated.png}
+%     % \includegraphics[width=0.3\textwidth]{stardistribution.png}
+%     \caption{Twenty Top Rated Restaurants in Avondale}
+%     \label{fig:my_label3}
+% \end{figure}
+\begin{table}[H]
+\centering
+\caption{Star Distribution of Restaurants Ratings}
+\begin{tabular}{p{2.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}}
+    \hline
+     Stars  & 1.0 & 2.0 & 3.0 & 4.0 & 5.0 \\
+    \hline
+    Distribution in Percentage & 16.2 & 9.8 & 11.0 & 21.6 & 41.4\\
+
+\hline
+\end{tabular}
+\end{table}
+Figure 2 (b) represents twenty top rated restaurants and their average 
+ratings. \textit{Colados Coffee and Crepes} is the top-rated restaurant with around 4.7 average stars. It is interesting to know that the star 
+ratings (out of 5) for the restaurant reviews are not uniformly distributed. As shown in Table 2, about $60$ percentage of these reviews rate the corresponding restaurants very highly (at least 4 stars); the other classes are smaller. 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.35\textwidth]{stardistribution.png}
+%     \caption{Star Distribution of Restaurants Ratings}
+%     \label{fig:my_label4}
+% \end{figure}
+Moreover, distribution of rating frequency of all the restaurants as well as the distribution of frequency of ratings given by the users follow the long tail property. In case of restaurants, there are very few restaurants that are rated frequently - called popular restaurants. In figure 3(a), it can be seen that only 40 restaurants are rated more than 100 times. Similarly, Rating Frequency per user is also plotted in Figure 3(b). It can be seen that very less users are interested in rating restaurants.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{restratingdistribution.png}
+    \includegraphics[width=0.2\textwidth]{usersratingdistri.png}
+    \caption{ Rating Distributions (a) Rating Frequency against Restaurants (left), (b) Rating Frequency per User (right)}
+    \label{fig:my_label5}
+\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[height=1.5in,width=2in\textwidth]{usersratingdistri.png}
+%     \caption{Rating Frequency of Users}
+%     \label{fig:my_label6}
+% \end{figure}
+
+\subsection{Big Picture} 
+As discussed before, the big picture of this study involves performing sentiment analysis on all the reviews on one hand and building an item-based collaborative filtering model to recommend restaurants based on favourite restaurant on the other. Eventually, the two aspects are to be merged together into one platform where a given user with a given "favourite restaurant" will get a list of restaurants along with predicted ratings based on the built model. Hence, the entire procedure can be broadly classified into three subsections. 
+\subsection{Methodology: Baseline Discovery and High-Level Work Flow Description} 
+If we could simply use reviews to predict ratings of a restaurants, that would be relatively simple. A study by Yu et al. (2017) used "bag of words" approach for the reviews and then did sentiment analysis using SVM [1]. However, the scenario here is relatively more complicated. Since we will  be recommending a user some restaurant which he/she has not paid to visit to or has written a review about beforehand, there would not be a review to implement a rating-prediction tool on. Hence, we will try to create user and restaurant "profiles" based off of all the reviews made by an user or all the reviews placed under a restaurant respectively. Then we intend to form a vector representing both the user and the restaurant profile to represent the event of a given user visiting a given restaurant. 
+
+An attempt of combining sentiment analysis with item-based collaborative filtering was done by Jayashree and Kulkarni (2017). They combined (1) sentiment analysis by SVM with (2) item based collaborative filtering using kNN and Naive Bayes'. For our current study we use this method to create one baseline. Since the paper did not mention anything about the way the reviews were converted into training matrix, we take the liberty of experimenting with different techniques learnt in class (in the subsection that follows) and choose the best performing technique as baseline. Going by a finding in the study performed by Yu et al. (2017), that advises use of linear-based classifier like SVM or Logistic Regression for sentiment analysis to yield maximum accuracy [3], our study limits itself to exploring SVM with "linear" kernel and Logistic Regression for the sentiment analysis segment and discussing findings with respect to different aspects of performance.
+
+\subsubsection{Baseline Discovery} Before creating a baseline, we have to look at different word embedding techniques to represent the reviews. For that purpose, it is essential to explore different ways and discard methods that provide less encouraging accuracy results at this stage. We initially start with using "bag of centroids" approach on word embedding that we learn to use in Assignment 2 of this course. Instead of using word2vec, however we use \textit{FastText}, an open-source library provided by Facebook AI lab [4] because it is believed to retain slightly better syntactical information and perform better for a small data-set like ours [5]. Firstly, we use all the words available in the review list without removing the stopwords to be trained using \textit{FastText}. That creates an array of vectors with each vector representing words in the model vocabulary. Applying k-means clustering on the array of vectors and using elbow method (figure below), we find out that using 10 clusters would be the optimal for this data-set.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\textwidth]{clustering.png}
+    \caption{Elbow method with point of inflection around k=10}
+    \label{fig:my_label7}
+\end{figure}
+
+Using 10 clusters, each of the reviews in the data-set was represented as a bag of centroids where it provides a counter for the number of times the words in the reviews feature in a particular cluster. Once we form the training matrix X, we split that into 80-20 to make dummy train and test sets. For cross-validation, we split the train set data in 80:20 ratio to optimize the regularization parameter C using "linear" kernel for SVM. The values for C are chosen at random ranging from E-4 to E4. For this case, the model is expected to perform best for C=1.19. It must be mentioned that to maintain consistency and retain a scope for a fair comparison, we have same
+\begin{enumerate}
+    \item Train-test split procedure (80:20)
+    \item Fixed k-fold cross validation with k=5
+    \item Usage of Google Collab in the same machine with minimal interference with other processes.
+\end{enumerate}  procedures for test-train-split, cross-validation and hyper-parameter optimization throughout the rest of this study. The test accuracy of the resultant model turned out to be 41.1 percent. While it is better than a random classifier which would have a 20 percent probability of classifying reviews (ratings 1-5) correctly, it is essential that we explore other baselines that would yield better performance. We try using logistic regression with tuning the "Inverse of regularization strength" parameter C in it. This process yielded a test accuracy of 41.4 percent. With respect to accuracy, that was not a significant jump, however it is worth mentioning that the run-time was observed with hyper-parameter tuning process, 30 iterations of Linear SVM (300.46 seconds) took almost 4 times of what same number of Logistic Regression (82.06 seconds) iterations took to compute. 
+
+
+In quest for better performance, it is essential to explore other ways to represent texts. In a blog posted by nadbor (2016), the arithmetic mean of word2vec vector representations of the words in a piece of text is used to represent the said piece of text [6]. In our data-set, we can take the mean of the words in the reviews to create vector representations of the reviews. When we train the resulting matrix for ratings using Linear SVM, the optimum C value was found to be 3.22 and the corresponding F1 score turned out to be 53.2 percent. The test score here was 55.3 percent. That was a significant jump over the accuracy returns from "bag of centroids" approach. This could be because of the fact that bag of centroids generalizes words to one of ten centroids. This causes generalization in review representation and depletes the inherent domain knowledge. In addition, we train the matrix using Logistic Regression and get F1 score of 56.1 percent and test accuracy of 58.3 percent at significantly reduced run-time.
+
+\subsubsection{High-Level Work Flow Description}
+As the Mean-Vector representation showed better performance for rating prediction, we will proceed forward with that technique for creating matrix for rating prediction training. Since a user will be recommended restaurants where he/she has not visited beforehand, we will not have prior information about any review for the user-restaurant pair. So, the plan is to use all the reviews made by a user and create mean-vector representation of that to represent an interpretation of "user profile". In a similar manner, we take all the reviews placed against a restaurant, create mean-vector representation of that and call that the "restaurant profile". Then instead of using the provided reviews, if user $U$ with "user profile" vector $V_{U}$ makes a Review represented with vector $r$ in a restaurant $R$ which has a "restaurant profile" vector of $V_{R}$, instead of using the review $r$, we use the appended vector $[V_{U} V_{R}]$. We call it the association vector ($Assoc(U, R)$) between a user and a restaurant. This provides us with a luxury of associating any user with any restaurant that the user may not have any visit to before.
+
+$Assoc(U, R)=[V_{U} V_{R}]$
+
+$Review(U_{i}, R_{j}: Rating_{i, j}$ ---> $Assoc(U_{i}, R_{j}): Rating{i, j}$
+
+As we train this $Assoc$ matrix to predict ratings, the model becomes capable of predicting rating for a given user in a given restaurant. In parallel, item-based collaborative filtering is done using kNN based solely on the ratings following the methodology explained in the GitHub repository of $KevinLiao$ [7]. As we follow the method explained, we find the cosine similarities among restaurants using the ratings given by the users to the restaurants. Additionally, we use fuzzy string matching to find the closest restaurant in our dataset with the "favourite restaurant" given in the query. By finding the 20 nearest neighbors of the closest matching restaurant, we get the top 20 recommendations with each one having distance metric with the given input. Since this part only involves the ratings and does not include information about the reviews, experimenting and fine-tuning this part of the project is out of the scope of this class. We merely use this to create a list of top X restaurants that are to be recommended for a user with given "favourite restaurant" based on the ratings they provide on different restaurants. Once we have the list of restaurants, we can leverage the user and restaurant profiles extracted from the first section of the model to predict the star ratings for the restaurants. We then multiply the distance metric from collaborative filtering (that shows relevance) and predicted rating (that depict restaurant fondness) to create a hybrid rating for the restaurants. We finally sort the restaurants based on the hybrid ratings. The high level architecture looks like \href{https://colab.research.google.com/drive/1IcFERYYH63-JIoa93ywXwm_KWJli7p1l}{\textbf{this}}.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.45\textwidth]{Architecture.png}
+%     \caption{High Level Project Architecture}
+%     \label{fig:my_label10}
+% \end{figure}
+
+
+\section{Results}
+In this section, we present the rating prediction performance of the Assoc Matrix against the baselines discussed in previous section. For clarification, we reiterate the established baselines:
+\begin{enumerate}
+    \item Rating Prediction Model trained using Linear SVM following Jayashree and Kulkarni (2017).
+    \item Rating Prediction Model trained using Logistic Regression
+\end{enumerate}
+We can intuitively imply that both these baselines are expected to do better than the $Assoc$ Matrix approach that we devised because the rating prediction coming directly from individual review is expected to have more specific information for a particular user-restaurant pair and combining all reviews of a user to all reviews of a restaurant could be expected to affect the pair specific domain knowledge of the specific user-restaurant pair. So, our aim was to observe if Assoc Matrix trained model can give results that are close enough to the baseline accuracy to justify the trade-off. Performance of the model is not solely defined by the accuracy. In addition, the computation time, should be one of the key reasons to choose one model over the other in form of a tie-breaker.
+
+\subsection{Rating Prediction: Accuracy}
+We created the $Assoc$ Matrix for the data and treated them to SVM with varying regularization parameter C as before. After hyper-parameter tuning and cross validation, the C for optimum performance was 41.98 and the F1 score and the test score when treated with that turned out to 51.2 percent and 50.4 percent respectively. We replicated the procedure with Logistic Regression. Logistic Regression with C=590.17 gave a F1 score of 51.05 percent and a test score of 52.5 percent. When compared to the baselines, the accuracy with Logistic regression fares around the same ballpark. Hence we look into the run-time in the next section. Figure 5(a) shows the performance bar-graph, when compared to our baselines.
+
+\subsection{Rating Prediction: Computation Time}
+Comparing the run-time for SVM and Logistic Regression with our baselines, there is an obvious increase in run-time which can be attributed to doubling of dimension of our approach [figure 5(b)]. With our Logistic regression model being significantly faster than our SVM baseline, it is our clear choice.
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{accuracy-compare.png}
+    \includegraphics[width=0.32\textwidth]{runtime-compare.png}
+    \caption{Rating Prediction Comparison with Baselines: (a) Test Accuracy (top), (b) Run-time (bottom)}
+    \label{fig:my_label_1}
+\end{figure}
+
+\subsection{Item-based Collaborative Filtering: kNN}
+As mentioned above, in this section, we recommend using traditional Item-based collaborative Filtering. Following figure shows 10 recommended restaurants in the results along with the distances when favourite restaurant - $McDonald's$ is given as an input. Cosine distances of all the recommended restaurants look quite promising. In this filtering, text reviews are not used and only star ratings are used to feed kNN model with k value as 20. Resulting distances will be further used for hybrid rating. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{item_based.png}
+    \caption{Recommendation Results using item-based collaborative filtering}
+    \label{fig:my_label13}
+\end{figure}
+% \begin{table}[H]
+% \centering
+% \caption{Recommendations using Item-based collaborative filtering 
+% }
+% \scalebox{0.80}{
+% \begin{tabular}{p{3.5cm}|p{2.5cm}}
+%     \hline
+%     Restaurant name & Cosine Similarity  \\
+%     \hline
+%     1. Kneaders Bakery &0.962326   \\
+%     2. Culver's	 &	0.957797    \\
+%     3. Café Rio Mexicam Grill &	0.95662 \\
+%     4. Red Robin Gourment Burgers	&	0.956241 \\
+%     5. Picossitos 	&	0.955816 \\
+%     6. Tony's Café	&	0.944755  \\
+%     7. TJ's Homestyle &  0.944613 \\
+%     8. Café Zupas 	&	0.94176 \\
+%     9. The Habit Burger &  		0.936876 \\
+%     10. Tokyo Joe's	 &	0.936234  \\
+% \hline
+% \end{tabular}
+% }
+% \end{table}
+% \subsection{Hybrid Rating Prediction and Restaurant Recommendation}
+% On one hand, given a "favourite restaurant", we get the top 20 restaurants for that person based on collaborative filtering model built in previous section. rating prediction model. On the other hand, we use the user-review-profile of the specific user and restaurant-review-profile for the  restaurants featuring in the list to form $Assoc$ vectors. Using the Logistic Regression based rating prediction model, we predict the star rating for each user-restaurant pair. We multiply the distance metric and the predicted rating metric together to create our hybrid metric. Then we sort the restaurants in the decreasing order of their hybrid rating. The following figure depicts an example of top 20 relevant restaurants for user with id $'uFVAAe0JC81IPmxgT49Hcw'$ with "Chipotle" as his/her favourite restaurant displayed in the decreasing order of the hybrid 
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{hybrid-example.png}
+%     \caption{Hybrid Restaurant Recommendation for a user who likes Chipotle}
+%     \label{fig:my_label14}
+% \end{figure}
+
+\section{Next Steps}
+Our model predicts 5 classes (5 stars) as compared to two in the baseline. Additionally, We are going to add our own approach of merging reviews along with the ratings to recommend. Certain steps that we are preparing for:
+\begin{enumerate}
+    \item Building a hybrid system that uses item based collaborative filtering and review based rating prediction to get recommendations. A prototype is shown \href{https://colab.research.google.com/drive/1kw6mEKkxHyOPAcWYhZYDAY9RzdWd-x69}{\textbf{here}}.
+    \item Building a GUI using Python \textit{Tkinter} module to recommend restaurants.
+\end{enumerate}
+\section{Contribution}All team members have contributed a similar amount of effort.
+
+% \section{CONCLUSION}
+% This study gave us an opportunity to do try different NLP techniques to leverage reviews to build a rating prediction tool. While we explored different avenues for analysis, there are different aspects that will be explored or could been explored with more time. 
+% \subsection{Findings from the Analysis}
+% Primarily the most important takeaways from this project were:
+% \begin{enumerate}
+%     \item Computation time for Logistic Regression for our data was significantly lower than Linear SVM and we both similar performance with both the models for this data. So Logistic Regression model was preferred.
+%     \item Our rating prediction tool consistently predicted 50-60 percent correctly. While that may not be perfect, it must be considered that there are 5 stars and the random classification could predict with 20 percent accuracy.
+%     \item While the item-based collaborative filtering recommendation model was built with success, having data-set with less sparse matrix would have made for a better model. What we mean by this is, the model would recommend more definitively if we have data with frequent occurrences of a single user reviewing multiple restaurants.
+% \end{enumerate}
+% \subsection{Limitations and Future Analysis Prospect}
+% There are several directions we could have attacked the problem in, in order to better our model. We will make attempts to explore a few of these in the remaining time.
+% \begin{enumerate}
+%     \item We took the average of the word vectors in a text piece to represent the given text to create our training matrix. We could explore other operations, such as simple summation of word-vectors.
+%     \item Other word embedding techniques such as GloVe could have been explored.
+%     \item Linear SVM has a tendency not to converge within 100 iterations which is the default number of $"max\_iter"$ hyper-parameter. To keep most things unchanged, we did not play with this parameter. However, having higher maximum iteration would better convergence of the model. That however could not performed without compounding into the already high computation time for SVM when compared to Logistic regression model.
+%     \item Instead of using just the ratings for item-based collaborative filtering, the reviews could have been used as a part of it making this section of the analysis more inclusive and comprehensive.
+%     \item the underlying model has already been built with reasonable accuracy, we could create a GUI interface using Python's \textit{Tkinter} library.
+% \end{enumerate}
+% While the work is not free of limitations and drawbacks, the study displayed an interesting way of combining analysis derived from text and pure numbers. If some of the aforementioned points are explored, there is a possibility for encountering more of such fascinating results.
+
+
+% \begin{table}
+%     \centering
+   
+%     \caption{Specific Feature description of our dataset.}
+%   % https://stackoverflow.com/questions/790932/how-to-wrap-text-in-latex-tables    
+%   \begin{tabular}{p{1.25cm}|p{2.7cm}|p{1.0cm}|p{1.0cm}|p{1.0cm}}
+%     \hline
+%     Features included in customized dataset & Feature Description & Distinct Feature & ground truth & Statistics \\
+%     %Features included in customized dataset\Type & Description & used as ground truth label & Distinct & Statistics\\
+%     \hline
+%          reviewID & unique review identifier to track a user review for a business & & \\
+%          \hline
+%          userID & User unique identifier  & yes & \\
+%          \hline
+%          businessID  & business unique identifier & & \\
+%          \hline
+%          restaurant name & Name of a restaurant	 & yes & yes \\
+%          \hline
+%          address	  & Address of a restaurant & & \\
+%          \hline
+%          City	      & city name (Avondale)  & & \\
+%          \hline
+%          State	  & state (Arizona) & & \\
+%          \hline
+%          latitude	  & location Latitude coordinates & & \\
+%          \hline
+%          longitude	  & Location Longitude coordinates & & \\
+%          \hline
+%          star ratings	  & A user rating of a restaurant between 1 and 5 & yes & yes \\
+%          \hline
+%          useful	  & Num. of users who thought review to be useful  & yes & yes \\
+%          \hline
+%           funny	  & Num. of users who thought review to be funny & yes & yes\\
+%          \hline
+%           cool	  & Num. of users who thought review to be cool & yes & yes \\
+%          \hline
+%          text	  & {specific user review rating of a restaurant } &yes&yes \\
+%          \hline
+
+%     \end{tabular}
+    
+%     \label{tab:my_label}
+% \end{table}
+
+
+\section{Resources}
+\begin{enumerate}[label={[\arabic*]}]
+    \item R. Jayashree and Deepa Kulkarni. 2017. Recommendation System with Sentiment Analysis as Feedback Component. Advances in Intelligent Systems and Computing Proceedings of Sixth International Conference on Soft Computing for Problem Solving (2017), 359–367.
+    DOI:http://dx.doi.org/10.1007/978-981-10-3325-4\_36
+    \item Yelp, Inc. 2020. Yelp Dataset. (March 2020). Retrieved March 28, 2020 from https://www.kaggle.com/yelp-dataset/yelp-dataset
+    \item Boya Yu, Jiaxu Zhou, Yi Zhang, and Yunong Cao. 2017. Identifying Restaurant Features via Sentiment Analysis on Yelp Reviews. Identifying Restaurant Features via Sentiment Analysis on Yelp Reviews (2017).
+    \item Facebookresearch. 2020. facebookresearch/fastText. (March 2020). Retrieved March 28, 2020 from https://github.com/facebookresearch/fastText
+    \item Anon. 2016. FastText and Gensim word embeddings. (August 2016). Retrieved March 28, 2020 from https://rare-technologies.com/fasttext-and-gensim-word-embeddings/
+    \item Nadbor. 2016. DS lore. (May 2016). Retrieved March 28, 2020 from http://nadbordrozd.github.io/blog/2016/05/20/text-classification-with-word2vec/
+    \item KevinLiao159. KevinLiao159/MyDataSciencePortfolio.
+    Retrieved March 28, 2020 from https://tinyurl.com/cse6240-item-based-reference
+    
+\end{enumerate}
+
+% \section{Appendix}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.35\textwidth]{SVM-BOC.png}
+%     \includegraphics[width=0.35\textwidth]{LR-BOC.png}
+%     \caption{Learning curve with "Bag of Centroids" matrix: (a) with SVM (top), (b) with Logistic Regression (bottom)}
+%     \label{fig:my_label8}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.35\textwidth]{SVM-APR2.png}
+%     \includegraphics[width=0.35\textwidth]{LR-APR2.png}
+%     \caption{Learning curve with Review Mean-Vector matrix: (a) with SVM (top), (b) with Logistic Regression (bottom)}
+%     \label{fig:my_label9}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.35\textwidth]{SVM-APR3.png}
+%     \includegraphics[width=0.35\textwidth]{LR-APR3.png}
+%     \caption{Learning curve with $Assoc$ matrix: (a) with SVM (top), (b) with Logistic Regression (bottom)}
+%     \label{fig:my_label11}
+% \end{figure}
+
+% If your title is lengthy, you must define a short version to be used
+% in the page headers, to prevent overlapping text. The \verb|title|
+% command has a ``short title'' parameter:
+% \begin{verbatim}
+%   \title[short title]{full title}
+% \end{verbatim}
+
+% \section{Authors and Affiliations}
+
+% Each author must be defined separately for accurate metadata
+% identification. Multiple authors may share one affiliation. Authors'
+% names should not be abbreviated; use full first names wherever
+% possible. Include authors' e-mail addresses whenever possible.
+
+% Grouping authors' names or e-mail addresses, or providing an ``e-mail
+% alias,'' as shown below, is not acceptable:
+% \begin{verbatim}
+%   \author{Brooke Aster, David Mehldau}
+%   \email{dave,judy,steve@university.edu}
+%   \email{firstname.lastname@phillips.org}
+% \end{verbatim}
+
+% The \verb|authornote| and \verb|authornotemark| commands allow a note
+% to apply to multiple authors --- for example, if the first two authors
+% of an article contributed equally to the work.
+
+% If your author list is lengthy, you must define a shortened version of
+% the list of authors to be used in the page headers, to prevent
+% overlapping text. The following command should be placed just after
+% the last \verb|\author{}| definition:
+% \begin{verbatim}
+%   \renewcommand{\shortauthors}{McCartney, et al.}
+% \end{verbatim}
+% Omitting this command will force the use of a concatenated list of all
+% of the authors' names, which may result in overlapping text in the
+% page headers.
+
+% The article template's documentation, available at
+% \url{https://www.acm.org/publications/proceedings-template}, has a
+% complete explanation of these commands and tips for their effective
+% use.
+
+% Note that authors' addresses are mandatory for journal articles.
+
+% \section{Rights Information}
+
+% Authors of any work published by ACM will need to complete a rights
+% form. Depending on the kind of work, and the rights management choice
+% made by the author, this may be copyright transfer, permission,
+% license, or an OA (open access) agreement.
+
+% Regardless of the rights management choice, the author will receive a
+% copy of the completed rights form once it has been submitted. This
+% form contains \LaTeX\ commands that must be copied into the source
+% document. When the document source is compiled, these commands and
+% their parameters add formatted text to several areas of the final
+% document:
+% \begin{itemize}
+% \item the ``ACM Reference Format'' text on the first page.
+% \item the ``rights management'' text on the first page.
+% \item the conference information in the page header(s).
+% \end{itemize}
+
+% Rights information is unique to the work; if you are preparing several
+% works for an event, make sure to use the correct set of commands with
+% each of the works.
+
+% The ACM Reference Format text is required for all articles over one
+% page in length, and is optional for one-page articles (abstracts).
+
+% \section{CCS Concepts and User-Defined Keywords}
+
+% Two elements of the ``acmart'' document class provide powerful
+% taxonomic tools for you to help readers find your work in an online
+% search.
+
+% The ACM Computing Classification System ---
+% \url{https://www.acm.org/publications/class-2012} --- is a set of
+% classifiers and concepts that describe the computing
+% discipline. Authors can select entries from this classification
+% system, via \url{https://dl.acm.org/ccs/ccs.cfm}, and generate the
+% commands to be included in the \LaTeX\ source.
+
+% User-defined keywords are a comma-separated list of words and phrases
+% of the authors' choosing, providing a more flexible way of describing
+% the research being presented.
+
+% CCS concepts and user-defined keywords are required for for all
+% articles over two pages in length, and are optional for one- and
+% two-page articles (or abstracts).
+
+% \section{Sectioning Commands}
+
+% Your work should use standard \LaTeX\ sectioning commands:
+% \verb|section|, \verb|subsection|, \verb|subsubsection|, and
+% \verb|paragraph|. They should be numbered; do not remove the numbering
+% from the commands.
+
+% Simulating a sectioning command by setting the first word or words of
+% a paragraph in boldface or italicized text is {\bfseries not allowed.}
+
+% \section{Tables}
+
+% The ``\verb|acmart|'' document class includes the ``\verb|booktabs|''
+% package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
+% high-quality tables.
+
+% Table captions are placed {\itshape above} the table.
+
+% Because tables cannot be split across pages, the best placement for
+% them is typically the top of the page nearest their initial cite.  To
+% ensure this proper ``floating'' placement of tables, use the
+% environment \textbf{table} to enclose the table's contents and the
+% table caption.  The contents of the table itself must go in the
+% \textbf{tabular} environment, to be aligned properly in rows and
+% columns, with the desired horizontal and vertical rules.  Again,
+% detailed instructions on \textbf{tabular} material are found in the
+% \textit{\LaTeX\ User's Guide}.
+
+% Immediately following this sentence is the point at which
+% Table~\ref{tab:freq} is included in the input file; compare the
+% placement of the table here with the table in the printed output of
+% this document.
+
+% \begin{table}
+%   \caption{Frequency of Special Characters}
+%   \label{tab:freq}
+%   \begin{tabular}{ccl}
+%     \toprule
+%     Non-English or Math&Frequency&Comments\\
+%     \midrule
+%     \O & 1 in 1,000& For Swedish names\\
+%     $\pi$ & 1 in 5& Common in math\\
+%     \$ & 4 in 5 & Used in business\\
+%     $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
+%   \bottomrule
+% \end{tabular}
+% \end{table}
+
+% To set a wider table, which takes up the whole width of the page's
+% live area, use the environment \textbf{table*} to enclose the table's
+% contents and the table caption.  As with a single-column table, this
+% wide table will ``float'' to a location deemed more
+% desirable. Immediately following this sentence is the point at which
+% Table~\ref{tab:commands} is included in the input file; again, it is
+% instructive to compare the placement of the table here with the table
+% in the printed output of this document.
+
+% \begin{table*}
+%   \caption{Some Typical Commands}
+%   \label{tab:commands}
+%   \begin{tabular}{ccl}
+%     \toprule
+%     Command &A Number & Comments\\
+%     \midrule
+%     \texttt{{\char'134}author} & 100& Author \\
+%     \texttt{{\char'134}table}& 300 & For tables\\
+%     \texttt{{\char'134}table*}& 400& For wider tables\\
+%     \bottomrule
+%   \end{tabular}
+% \end{table*}
+
+% \section{Math Equations}
+% You may want to display math equations in three distinct styles:
+% inline, numbered or non-numbered display.  Each of the three are
+% discussed in the next sections.
+
+% \subsection{Inline (In-text) Equations}
+% A formula that appears in the running text is called an inline or
+% in-text formula.  It is produced by the \textbf{math} environment,
+% which can be invoked with the usual
+% \texttt{{\char'134}begin\,\ldots{\char'134}end} construction or with
+% the short form \texttt{\$\,\ldots\$}. You can use any of the symbols
+% and structures, from $\alpha$ to $\omega$, available in
+% \LaTeX~\cite{Lamport:LaTeX}; this section will simply show a few
+% examples of in-text equations in context. Notice how this equation:
+% \begin{math}
+%   \lim_{n\rightarrow \infty}x=0
+% \end{math},
+% set here in in-line math style, looks slightly different when
+% set in display style.  (See next section).
+
+% \subsection{Display Equations}
+% A numbered display equation---one set off by vertical space from the
+% text and centered horizontally---is produced by the \textbf{equation}
+% environment. An unnumbered display equation is produced by the
+% \textbf{displaymath} environment.
+
+% Again, in either environment, you can use any of the symbols and
+% structures available in \LaTeX\@; this section will just give a couple
+% of examples of display equations in context.  First, consider the
+% equation, shown as an inline equation above:
+% \begin{equation}
+%   \lim_{n\rightarrow \infty}x=0
+% \end{equation}
+% Notice how it is formatted somewhat differently in
+% the \textbf{displaymath}
+% environment.  Now, we'll enter an unnumbered equation:
+% \begin{displaymath}
+%   \sum_{i=0}^{\infty} x + 1
+% \end{displaymath}
+% and follow it with another numbered equation:
+% \begin{equation}
+%   \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
+% \end{equation}
+% just to demonstrate \LaTeX's able handling of numbering.
+
+% \section{Figures}
+
+% The ``\verb|figure|'' environment should be used for figures. One or
+% more images can be placed within a figure. If your figure contains
+% third-party material, you must clearly identify it as such, as shown
+% in the example below.
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=\linewidth]{sample-franklin}
+%   \caption{1907 Franklin Model D roadster. Photograph by Harris \&
+%     Ewing, Inc. [Public domain], via Wikimedia
+%     Commons. (\url{https://goo.gl/VLCRBB}).}
+%   \Description{The 1907 Franklin Model D roadster.}
+% \end{figure}
+
+% Your figures should contain a caption which describes the figure to
+% the reader. Figure captions go below the figure. Your figures should
+% {\bfseries also} include a description suitable for screen readers, to
+% assist the visually-challenged to better understand your work.
+
+% Figure captions are placed {\itshape below} the figure.
+
+% \subsection{The ``Teaser Figure''}
+
+% A ``teaser figure'' is an image, or set of images in one figure, that
+% are placed after all author and affiliation information, and before
+% the body of the article, spanning the page. If you wish to have such a
+% figure in your article, place the command immediately before the
+% \verb|\maketitle| command:
+% \begin{verbatim}
+%   \begin{teaserfigure}
+%     \includegraphics[width=\textwidth]{sampleteaser}
+%     \caption{figure caption}
+%     \Description{figure description}
+%   \end{teaserfigure}
+% \end{verbatim}
+
+% \section{Citations and Bibliographies}
+
+% The use of \BibTeX\ for the preparation and formatting of one's
+% references is strongly recommended. Authors' names should be complete
+% --- use full first names (``Donald E. Knuth'') not initials
+% (``D. E. Knuth'') --- and the salient identifying features of a
+% reference should be included: title, year, volume, number, pages,
+% article DOI, etc.
+
+% The bibliography is included in your source document with these two
+% commands, placed just before the \verb|\end{document}| command:
+% \begin{verbatim}
+%   \bibliographystyle{ACM-Reference-Format}
+%   \bibliography{bibfile}
+% \end{verbatim}
+% where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
+% suffix, of the \BibTeX\ file.
+
+% Citations and references are numbered by default. A small number of
+% ACM publications have citations and references formatted in the
+% ``author year'' style; for these exceptions, please include this
+% command in the {\bfseries preamble} (before
+% ``\verb|\begin{document}|'') of your \LaTeX\ source:
+% \begin{verbatim}
+%   \citestyle{acmauthoryear}
+% \end{verbatim}
+
+%   Some examples.  A paginated journal article \cite{Abril07}, an
+%   enumerated journal article \cite{Cohen07}, a reference to an entire
+%   issue \cite{JCohen96}, a monograph (whole book) \cite{Kosiur01}, a
+%   monograph/whole book in a series (see 2a in spec. document)
+%   \cite{Harel79}, a divisible-book such as an anthology or compilation
+%   \cite{Editor00} followed by the same example, however we only output
+%   the series if the volume number is given \cite{Editor00a} (so
+%   Editor00a's series should NOT be present since it has no vol. no.),
+%   a chapter in a divisible book \cite{Spector90}, a chapter in a
+%   divisible book in a series \cite{Douglass98}, a multi-volume work as
+%   book \cite{Knuth97}, an article in a proceedings (of a conference,
+%   symposium, workshop for example) (paginated proceedings article)
+%   \cite{Andler79}, a proceedings article with all possible elements
+%   \cite{Smith10}, an example of an enumerated proceedings article
+%   \cite{VanGundy07}, an informally published work \cite{Harel78}, a
+%   doctoral dissertation \cite{Clarkson85}, a master's thesis:
+%   \cite{anisi03}, an online document / world wide web resource
+%   \cite{Thornburg01, Ablamowicz07, Poker06}, a video game (Case 1)
+%   \cite{Obama08} and (Case 2) \cite{Novak03} and \cite{Lee05} and
+%   (Case 3) a patent \cite{JoeScientist001}, work accepted for
+%   publication \cite{rous08}, 'YYYYb'-test for prolific author
+%   \cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might
+%   contain 'duplicate' DOI and URLs (some SIAM articles)
+%   \cite{Kirschmer:2010:AEI:1958016.1958018}. Boris / Barbara Beeton:
+%   multi-volume works as books \cite{MR781536} and \cite{MR781537}. A
+%   couple of citations with DOIs:
+%   \cite{2004:ITE:1009386.1010128,Kirschmer:2010:AEI:1958016.1958018}. Online
+%   citations: \cite{TUGInstmem, Thornburg01, CTANacmart}. Artifacts:
+%   \cite{R} and \cite{UMassCitations}.
+
+% \section{Acknowledgments}
+
+% Identification of funding sources and other support, and thanks to
+% individuals and groups that assisted in the research and the
+% preparation of the work should be included in an acknowledgment
+% section, which is placed just before the reference section in your
+% document.
+
+% This section has a special environment:
+% \begin{verbatim}
+%   \begin{acks}
+%   ...
+%   \end{acks}
+% \end{verbatim}
+% so that the information contained therein can be more easily collected
+% during the article metadata extraction phase, and to ensure
+% consistency in the spelling of the section heading.
+
+% Authors should not prepare this section as a numbered or unnumbered {\verb|\section|}; please use the ``{\verb|acks|}'' environment.
+
+% \section{Appendices}
+
+% If your work needs an appendix, add it before the
+% ``\verb|\end{document}|'' command at the conclusion of your source
+% document.
+
+% Start the appendix with the ``\verb|appendix|'' command:
+% \begin{verbatim}
+%   \appendix
+% \end{verbatim}
+% and note that in the appendix, sections are lettered, not
+% numbered. This document has two appendices, demonstrating the section
+% and subsection identification method.
+
+% \section{SIGCHI Extended Abstracts}
+
+% The ``\verb|sigchi-a|'' template style (available only in \LaTeX\ and
+% not in Word) produces a landscape-orientation formatted article, with
+% a wide left margin. Three environments are available for use with the
+% ``\verb|sigchi-a|'' template style, and produce formatted output in
+% the margin:
+% \begin{itemize}
+% \item {\verb|sidebar|}:  Place formatted text in the margin.
+% \item {\verb|marginfigure|}: Place a figure in the margin.
+% \item {\verb|margintable|}: Place a table in the margin.
+% \end{itemize}
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+% \begin{acks}
+% To Robert, for the bagels and explaining CMYK and color spaces.
+% \end{acks}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+% \bibliographystyle{ACM-Reference-Format}
+% \bibliography{sample-base}
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigconf.tex'.
